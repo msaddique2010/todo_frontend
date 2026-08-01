@@ -1,11 +1,11 @@
-import AddForm from "./AddFrom";
+import Todo from "./Todo";
 
 function App() {
-  return (
+    return (
         <>
-            <AddForm />
+            <Todo />
         </>
-  )
+    )
 }
 
 export default App;
