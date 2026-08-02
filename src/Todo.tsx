@@ -117,17 +117,18 @@ export default function Todo() {
             
             <form onSubmit={addTask} className="flex gap-2 mb-6">
                 <input 
+                    
                     ref={inputRef} 
                     type="text" 
                     placeholder="Enter Task" 
                     onChange={(e) => {
                         setTask(e.target.value);
                     }}
-                    className="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-base sm:text-sm"
+                    className="flex-1 min-w-0 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-base sm:text-sm"
                 />
                 <button 
                     type="submit"
-                    className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-medium rounded-xl transition-all shadow-md shadow-indigo-100 hover:shadow-lg hover:shadow-indigo-200 text-sm"
+                    className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-medium rounded-xl transition-all shadow-md shadow-indigo-100 hover:shadow-lg hover:shadow-indigo-200 text-sm shrink-0"
                 >
                     Submit
                 </button>
