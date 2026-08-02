@@ -70,6 +70,42 @@ export default function Todo() {
         }
     }
 
+    // editTask
+    const editTask = async (id: string, task: string) => {
+        const updatedValue = prompt("Enter the updated value:", task);
+
+        // User clicked Cancel
+        if (updatedValue === null) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`${BASE_URL}/task/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    task: updatedValue,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Response Status: ${response.status}`);
+            }
+
+            const updatedTask = await response.json();
+
+            setTasks((prevTasks) =>
+                prevTasks.map((task) =>
+                    task._id === id ? updatedTask : task
+                )
+            );
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <>
             <form onSubmit={addTask}>
@@ -83,7 +119,12 @@ export default function Todo() {
             </form>
             <ul>
                 {tasks.map(({task, _id}) => {
-                    return (<li key={_id}>{task} <button onClick={() => deleteTask(_id)}>Delete</button></li>);
+                    return (
+                        <li key={_id}>{task} 
+                            <button onClick={() => editTask(_id, task)}>Edit</button>
+                            <button onClick={() => deleteTask(_id)}>Delete</button>
+                        </li>
+                    );
                 })}
             </ul>
         </>
