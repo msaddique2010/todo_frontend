@@ -3,7 +3,7 @@ import type { Todo } from "./Types";
 
 export default function Todo() {
     const [task, setTask] = useState<string>("");
-    const inputRef = useRef(null);
+    const inputRef = useRef<HTMLInputElement>(null);
     const [tasks, setTasks] = useState<Todo[]>([]);
     const BASE_URL = "https://todo-backend-0l3v.onrender.com";
     useEffect(() => {
@@ -24,7 +24,7 @@ export default function Todo() {
     },[]);
 
     // Add TAsk
-    const addTask = async(event) => {
+    const addTask = async(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try{
             const response = await fetch(`${BASE_URL}/task`, {
